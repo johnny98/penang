@@ -20,3 +20,11 @@ Route::get('users','UsersController@index');
 Route::get('users/create','UsersController@create');
 
 Route::post('users/store','UsersController@store');
+
+Route::get('users/edit/{id}','UsersController@edit');
+
+Route::post('users/update/{id}','UsersController@update');
+
+Route::get('users/show/{id}','UsersController@show');
+
+// Route::post('users/destroy/{id}','UsersController@destroy');

@@ -1,12 +1,24 @@
-@extends('layout')
-
 @section('content')
 
     <h1>一覧表示</h1>
 
+    <!-- 新規登録ボタン -->
     <div class="row">
         <div class="col-sm-12">
             <a href="/users/create" class="btn btn-primary" style="margin:20px;">新規登録</a>
+        </div>
+    </div>
+
+    <!-- 検索フォーム -->
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="get" action="/users" class="form-inline" style="margin:20px;">
+                <div class="form-group">
+                    <label>検索</label>
+                    <input type="text" name="keyword" class="form-control" value="{{$keyword}}">
+                </div>
+                <input type="submit" value="検索" class="btn btn-info">
+            </form>
         </div>
     </div>
 
@@ -32,6 +44,6 @@
     </table>
 
     <!-- page control -->
-    {!! $users->render() !!}
+    {!! $users->appends(['keyword'=>$keyword])->render() !!}
 
 @stop
