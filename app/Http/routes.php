@@ -27,4 +27,4 @@ Route::post('users/update/{id}','UsersController@update');
 
 Route::get('users/show/{id}','UsersController@show');
 
-// Route::post('users/destroy/{id}','UsersController@destroy');
+Route::post('users/destroy/{id}','UsersController@destroy');

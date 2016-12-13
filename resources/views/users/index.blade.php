@@ -1,3 +1,24 @@
+@extends('layout')
+
+<!--@section('content')-->
+
+<!--    <h1>一覧表示</h1>-->
+
+<!--    <table class="table table-striped">-->
+<!--    @foreach($users as $user)-->
+<!--        <tr>-->
+<!--            <td>{{$user->id}}</td>-->
+<!--            <td>{{$user->name}}</td>-->
+<!--            <td>{{$user->email}}</td>-->
+<!--        </tr>-->
+<!--    @endforeach-->
+<!--    </table>-->
+
+<!--     page control -->
+<!--    {!! $users->render() !!}-->
+
+<!--@stop-->
+
 @section('content')
 
     <h1>一覧表示</h1>
@@ -46,4 +67,19 @@
     <!-- page control -->
     {!! $users->appends(['keyword'=>$keyword])->render() !!}
 
+@stop
+
+
+@section('script')
+
+$(function(){
+    $(".btn-destroy").click(function(){
+        if(confirm("本当に削除しますか？")){
+            //そのままsubmit（削除）
+        }else{
+            //cancel
+            return false;
+        }
+    });
+});
 @stop
