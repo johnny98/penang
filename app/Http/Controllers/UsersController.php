@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use App\User;
 
-use Illuminate\Support\Facades\Input;
+
 
 class UsersController extends Controller
 {
@@ -49,7 +49,7 @@ class UsersController extends Controller
         return view('users.create');
     }
     
-            public function store(Request $request)
+        public function store(Request $request)
     {
         //バリデーション
 
@@ -93,23 +93,7 @@ class UsersController extends Controller
         //一覧にリダイレクト
         return redirect()->to('/users');
     }
-    
-        // public function store(Request $request)
-    // {
-        //userオブジェクト生成
-        // $user = User::create();
 
-        //値の登録
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-
-        //保存
-        // $user->save();
-
-        //一覧にリダイレクト
-        // return redirect()->to('/users');
-    // }
-    
         public function edit($id)
     {
         //レコードを検索
@@ -148,10 +132,4 @@ class UsersController extends Controller
         //リダイレクト
         return redirect()->to('/users');
     }
-    
-    
-        // public function index()
-    // {
-
-    // }
 }
