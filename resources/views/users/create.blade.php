@@ -13,14 +13,20 @@
     <!-- form -->
     <form method="post" action="/users/store">
 
-        <div class="form-group">
+        <!-- エラーがあるかどうかを判断して、has-errorクラスを追加 -->
+        <div class="form-group @if(!empty($errors->first('name'))) has-error @endif">
             <label>名前</label>
-            <input type="text" name="name" value="" class="form-control">
+            <input type="text" name="name" value="{{Input::old('name')}}" class="form-control">
+            <!-- (最初の）エラーメッセージ表示 -->
+            <span class="help-block">{{$errors->first('name')}}</span>
         </div>
 
-        <div class="form-group">
+        <!-- エラーがあるかどうかを判断して、has-errorクラスを追加 -->
+        <div class="form-group @if(!empty($errors->first('email'))) has-error @endif">
             <label>E-Mail</label>
-            <input type="text" name="email" value="" class="form-control">
+            <input type="text" name="email" value="{{Input::old('email')}}" class="form-control">
+            <!-- (最初の）エラーメッセージ表示 -->
+            <span class="help-block">{{$errors->first('email')}}</span>
         </div>
 
         <input type="hidden" name="_token" value="{{csrf_token()}}">

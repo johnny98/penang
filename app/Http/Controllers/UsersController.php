@@ -8,26 +8,20 @@ use App\Http\Requests;
 
 use App\User;
 
+use Illuminate\Support\Facades\Input;
 
+use DB;
+
+use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
     public function index()
     {
         $query = User::query();
-        //全件取得
-        $users = $query->get();
-        // dd($users);
-        
-        //ページネーション
-        // $users = $query->orderBy('id','desc')->paginate(10);
-        // return view('users.index')->with('users',$users);
         
         //キーワード受け取り
         $keyword = \Input::get('keyword');
-
-        //クエリ生成
-        // $query = User::query();
 
         //もしキーワードがあったら
         if(!empty($keyword))
@@ -36,7 +30,12 @@ class UsersController extends Controller
             $query->where('email','like','%'.$keyword.'%');
             
         }
-
+        
+        
+        {
+            $query->where('del_flg',0);
+        }
+        
         //ページネーション
         $users = $query->orderBy('id','desc')->paginate(10);
         return view('users.index')->with('users',$users)
@@ -123,12 +122,14 @@ class UsersController extends Controller
         return view('users.show')->with('user',$user);
     }
     
-        public function destroy($id)
+     public function destroy($id)
     {
         //削除対象レコードを検索
         $user = User::find($id);
+        // dd($user);
         //削除
-        $user->delete();
+        $user->del_flg = 1;
+        $user->save();
         //リダイレクト
         return redirect()->to('/users');
     }
